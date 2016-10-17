@@ -13,10 +13,12 @@ import javax.swing.*;
  */
 public class VentanaJuego extends JFrame {
 	private static final long serialVersionUID = 1L;  // Para serialización
+	private static boolean[] cursores= new boolean[4];
 	JPanel pPrincipal;         // Panel del juego (layout nulo)
 	MundoJuego miMundo;        // Mundo del juego
 	CocheJuego miCoche;        // Coche del juego
 	MiRunnable miHilo = null;  // Hilo del bucle principal de juego	
+	
 
 	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
 	 * sin coches dentro
@@ -75,7 +77,8 @@ public class VentanaJuego extends JFrame {
 		});
 		
 		// Añadido para que también se gestione por teclado con el KeyListener
-		pPrincipal.addKeyListener( new KeyAdapter() {
+		//PASO 3
+		/**pPrincipal.addKeyListener( new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
@@ -96,6 +99,50 @@ public class VentanaJuego extends JFrame {
 						break;
 					}
 				}
+				
+			}
+		});*/
+		pPrincipal.addKeyListener( new KeyAdapter(){
+			public void keyPressed(KeyEvent e){
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_UP: {
+					cursores[1]=true;
+					break;
+				}
+				case KeyEvent.VK_DOWN: {
+					cursores[2]=true;
+					break;
+				}
+				case KeyEvent.VK_LEFT: {
+					cursores[3]=true;
+					break;
+				}
+				case KeyEvent.VK_RIGHT: {
+					cursores[4]=true;
+					break;
+				}
+			}
+			}
+			@SuppressWarnings("unused")
+			public void keyReleassed(KeyEvent e){
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_UP: {
+					cursores[1]=false;
+					break;
+				}
+				case KeyEvent.VK_DOWN: {
+					cursores[2]=false;
+					break;
+				}
+				case KeyEvent.VK_LEFT: {
+					cursores[3]=false;
+					break;
+				}
+				case KeyEvent.VK_RIGHT: {
+					cursores[4]=false;
+					break;
+				}
+			}
 			}
 		});
 		pPrincipal.setFocusable(true);
@@ -153,6 +200,8 @@ public class VentanaJuego extends JFrame {
 			while (sigo) {
 				// Mover coche
 				miCoche.mueve( 0.040 );
+				//Revisar teclas
+				cursores[4]=true;
 				// Chequear choques
 				// (se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones (esquinas)
 				if (miMundo.hayChoqueHorizontal(miCoche)) // Espejo horizontal si choca en X
