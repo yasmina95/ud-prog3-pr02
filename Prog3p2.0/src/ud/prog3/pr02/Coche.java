@@ -89,23 +89,31 @@ public class Coche {
 	 * @return  Fuerza de aceleración en Newtixels  
 	 * */ 
 	 public double fuerzaAceleracionAdelante() { 
-		 if (miVelocidad<=-150) return fuerzabaseA; 
-	  else if (miVelocidad<=0)  return fuerzabaseA*(-miVelocidad/150*0.5+0.5); 
-	  else if (miVelocidad<=250)  return fuerzabaseA*(miVelocidad/250*0.5+0.5); 
-	  else if (miVelocidad<=250)  return fuerzabaseA*(miVelocidad/250*0.5+0.5); 
-	  else if (miVelocidad<=750)  return fuerzabaseA; 
-	else return fuerzabaseA*(-(miVelocidad-1000)/250); 
+		 if (miVelocidad<=-150)
+			 return fuerzabaseA; 
+	  else if (miVelocidad<=0)  
+		  return fuerzabaseA*(-miVelocidad/150*0.5+0.5); 
+	  else if (miVelocidad<=250) 
+		  return fuerzabaseA*(miVelocidad/250*0.5+0.5); 
+	  else if (miVelocidad<=750)  
+		  return fuerzabaseA; 
+	else 
+		return fuerzabaseA*(-(miVelocidad-1000)/250); 
 	}
 	 /** Devuelve la fuerza de aceleración del coche, de acuerdo al motor definido en la práctica 2   * 
 		 * @return  Fuerza de aceleración en Newtixels  
 		 * */ 
 		 public double fuerzaAceleracionAtras() { 
-			 if (miVelocidad<=-150) return fuerzabaseAT; 
-		  else if (miVelocidad<=0)  return fuerzabaseAT*(-miVelocidad/150*0.5+0.5); 
-		  else if (miVelocidad<=250)  return fuerzabaseAT*(miVelocidad/250*0.5+0.5); 
-		  else if (miVelocidad<=250)  return fuerzabaseAT*(miVelocidad/250*0.5+0.5); 
-		  else if (miVelocidad<=750)  return fuerzabaseAT; 
-		else return fuerzabaseAT*(-(miVelocidad-1000)/250); 
+			 if (miVelocidad<=-150) 
+				 return fuerzabaseAT; 
+		  else if (miVelocidad<=0)  
+			  return fuerzabaseAT*(-miVelocidad/150*0.5+0.5); 
+		  else if (miVelocidad<=250)  
+			  return fuerzabaseAT*(miVelocidad/250*0.5+0.5); 
+		  else if (miVelocidad<=750)  
+			  return fuerzabaseAT; 
+		else
+			return fuerzabaseAT*(-(miVelocidad-1000)/250); 
 		}
 	public static double calcFuerzaRozamiento( double masa, double coefRozSuelo,   double coefRozAire, double vel ) { 
 		double fuerzaRozamientoAire = coefRozAire * (-vel); // En contra del movimiento    

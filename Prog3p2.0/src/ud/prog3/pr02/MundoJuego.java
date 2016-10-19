@@ -1,5 +1,7 @@
 package ud.prog3.pr02;
 
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 /** "Mundo" del juego del coche.
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 public class MundoJuego {
 	private JPanel panel;  // panel visual del juego
 	CocheJuego miCoche;    // Coche del juego
+	ArrayList<String> estrella = new ArrayList<String>();//Array list de estrellas
 	
 	/** Construye un mundo de juego
 	 * @param panel	Panel visual del juego
@@ -49,6 +52,39 @@ public class MundoJuego {
 	} else { 
 	   coche.acelera( aceleracion, 0.04 );  
 	   }
+	}
+	/** Si han pasado más de 1,2 segundos desde la última,   
+	 * * crea una estrella nueva en una posición aleatoria y la añade al mundo y al panel visual 
+	 * */  
+	public void creaEstrella(){
+		
+		estrella.add();
+	}
+	/** Quita todas las estrellas que lleven en pantalla demasiado tiempo   
+	 * * y rota 10 grados las que sigan estando   
+	 * * @param maxTiempo  Tiempo máximo para que se mantengan las estrellas (msegs)  
+	 *  * @return  Número de estrellas quitadas 
+	 * @throws InterruptedException 
+	 *  */   
+	public int quitaYRotaEstrellas( long maxTiempo ) throws InterruptedException {
+		int numeroE=0;
+		estrella.wait(maxTiempo);
+		if(maxTiempo>1.2){
+			numeroE++;
+		}
+		return numeroE;
+		
+	}
+	/** Calcula si hay choques del coche con alguna estrella (o varias). Se considera el choque si   
+	 * * se tocan las esferas lógicas del coche y la estrella. Si es así, las elimina.   
+	 * * @return  Número de estrellas eliminadas  
+	 * */
+	public int choquesConEstrellas(CocheJuego coche) {
+		int puntos=0;
+		if(coche.getPosX()== JLabelEstrella.RADIO_ESTRELLA-JLabelEstrella.TAMANYO_ESTRELLA/2 && coche.getPosY()== JLabelEstrella.RADIO_ESTRELLA-JLabelEstrella.TAMANYO_ESTRELLA/2){
+			puntos++;	
+		}
+		return puntos;
 	}
 	/** Calcula si hay choque en horizontal con los límites del mundo
 	 * @param coche	Coche cuyo choque se comprueba con su posición actual
