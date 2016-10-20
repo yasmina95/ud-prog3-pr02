@@ -57,8 +57,12 @@ public class MundoJuego {
 	 * * crea una estrella nueva en una posición aleatoria y la añade al mundo y al panel visual 
 	 * */  
 	public void creaEstrella(){
+		JLabelEstrella estrella[];
+		double aleatorio=Math.random();
+		int i=0;
 		
-		estrella.add();
+		//estrella[i++];
+	
 	}
 	/** Quita todas las estrellas que lleven en pantalla demasiado tiempo   
 	 * * y rota 10 grados las que sigan estando   
